@@ -1,0 +1,70 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+Layout/LineLength:
+    Max: 140
+
+Layout:
+  Metrics/MethodLength:
+    Enabled: false
+  Metrics/BlockLength:
+    Exclude:
+      - config/**/*
+      - spec/**/*
+
+Layout/SpaceBeforeBrackets:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'Gemfile'
+    - 'node_modules/**/*'
+
+Lint/AmbiguousBlockAssociation:
+    Exclude:
+      - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Gemspec/DateAssignment:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - 'spec/**/*'
+
+Style/StringLiteralsInInterpolation:
+  Exclude:
+    - 'node_modules'
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/ApplicationController:
+  Enabled: false
