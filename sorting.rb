@@ -23,6 +23,7 @@ class SortingAlgorithms
         arr[sorted_point], arr[min_index] = arr[min_index], arr[sorted_point]
         sorted_point += 1
       end
+      arr
     end
 
     def bubble_sort(arr)
@@ -36,6 +37,27 @@ class SortingAlgorithms
           end
         end
       end
+      arr
+    end
+
+    def cocktail_sort(arr)
+      swapped_value = true
+      while swapped_value
+        swapped_value = false
+        for i in 0..(arr.size - 2)
+          if arr[i] > arr[i + 1]
+            arr[i], arr[i + 1] = arr[i + 1], arr[i]
+            swapped_value = true
+          end
+        end
+        for i in (arr.size - 1)..1
+          if arr[i - 1] > arr[i]
+            arr[i], arr[i - 1] = arr[i - 1], arr[i]
+            swapped_value = true
+          end
+        end
+      end
+      arr
     end
   end
 end
@@ -45,16 +67,27 @@ size = gets.chomp.to_i
 unsorted = SortingAlgorithms.make_random_array(size)
 
 start_time = Time.now
-SortingAlgorithms.ruby_sort(unsorted.clone)
+sorted = SortingAlgorithms.ruby_sort(unsorted.clone)
 end_time = Time.now
 puts "it took ruby_sort #{end_time - start_time} seconds to complete this sorting"
 
 start_time = Time.now
-SortingAlgorithms.selection_sort(unsorted.clone)
+if SortingAlgorithms.selection_sort(unsorted.clone) != sorted
+  raise "bunda!"
+end
 end_time = Time.now
 puts "it took selection_sort #{end_time - start_time} seconds to complete this sorting"
 
 start_time = Time.now
-SortingAlgorithms.bubble_sort(unsorted.clone)
+if SortingAlgorithms.bubble_sort(unsorted.clone) != sorted
+  raise "bunda!"
+end
 end_time = Time.now
 puts "it took bubble_sort #{end_time - start_time} seconds to complete this sorting"
+
+start_time = Time.now
+if SortingAlgorithms.cocktail_sort(unsorted.clone) != sorted
+  raise "bunda!"
+end
+end_time = Time.now
+puts "it took cocktail_sort #{end_time - start_time} seconds to complete this sorting"
