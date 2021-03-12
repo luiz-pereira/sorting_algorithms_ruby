@@ -6,45 +6,55 @@ class SortingAlgorithms
       (1..size).to_a.shuffle
     end
 
-    def selection_sort(size)
-      unsorted = make_random_array(size)
+    def ruby_sort(arr)
+      arr.sort
+    end
+
+    def selection_sort(arr)
       sorted_point = 0
-      while sorted_point < size - 1
-        current_min = size + 1
-        for i in sorted_point..(size - 1)
-          if current_min > unsorted[i]
-            current_min = unsorted[i]
+      while sorted_point < arr.size - 1
+        current_min = arr.size + 1
+        for i in sorted_point..(arr.size - 1)
+          if current_min > arr[i]
+            current_min = arr[i]
             min_index = i
           end
         end
-        unsorted[sorted_point], unsorted[min_index] = unsorted[min_index], unsorted[sorted_point]
+        arr[sorted_point], arr[min_index] = arr[min_index], arr[sorted_point]
         sorted_point += 1
       end
-      puts unsorted
+    end
+
+    def bubble_sort(arr)
+      swapped_value = true
+      while swapped_value
+        swapped_value = false
+        for i in 0..(arr.size - 2)
+          if arr[i] > arr[i + 1]
+            arr[i], arr[i + 1] = arr[i + 1], arr[i]
+            swapped_value = true
+          end
+        end
+      end
     end
   end
 end
 
-puts "
-  select a sorting algorithm:\n
-  1 - Selection Sort\n
-  2 - Bubble Sort\n
-  3 - Cocktail-shaker Sort\n
-  4 - Merge Sort\n
-"
-selection = gets.chomp.to_i
 puts "give an array size"
 size = gets.chomp.to_i
+unsorted = SortingAlgorithms.make_random_array(size)
+
 start_time = Time.now
-case selection
-when 1
-  SortingAlgorithms.selection_sort(size)
-when 2
-  SortingAlgorithms.selection_sort(size)
-when 3
-  SortingAlgorithms.selection_sort(size)
-when 4
-  SortingAlgorithms.selection_sort(size)
-end
+SortingAlgorithms.ruby_sort(unsorted.clone)
 end_time = Time.now
-puts "it took #{end_time - start_time} seconds to complete this shitty sorting"
+puts "it took ruby_sort #{end_time - start_time} seconds to complete this sorting"
+
+start_time = Time.now
+SortingAlgorithms.selection_sort(unsorted.clone)
+end_time = Time.now
+puts "it took selection_sort #{end_time - start_time} seconds to complete this sorting"
+
+start_time = Time.now
+SortingAlgorithms.bubble_sort(unsorted.clone)
+end_time = Time.now
+puts "it took bubble_sort #{end_time - start_time} seconds to complete this sorting"
