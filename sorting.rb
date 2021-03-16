@@ -59,6 +59,33 @@ class SortingAlgorithms
       end
       arr
     end
+
+    def merge_sort(arr)
+      l_index = 0
+      r_index = arr.size - 1
+      if l_index < r_index
+        mid = (arr.size / 2).to_i
+        left = arr[l_index...mid]
+        right = arr[mid..r_index]
+        merge_sort(left)
+        merge_sort(right)
+        left_i = 0
+        right_i = 0
+        for i in (0...arr.size)
+          lefti = left[left_i] if left_i != left.size
+          righti = right[right_i] if right_i != right.size
+          if right_i == right.size || (left_i != left.size && lefti < righti)
+            arr[i] = lefti
+            left_i += 1
+          else
+            arr[i] = righti
+            right_i += 1
+          end
+        end
+      end
+      arr
+    end
+
   end
 end
 
@@ -91,3 +118,10 @@ if SortingAlgorithms.cocktail_sort(unsorted.clone) != sorted
 end
 end_time = Time.now
 puts "it took cocktail_sort #{end_time - start_time} seconds to complete this sorting"
+
+start_time = Time.now
+if SortingAlgorithms.merge_sort(unsorted.clone) != sorted
+  raise "bunda!"
+end
+end_time = Time.now
+puts "it took merge_sort #{end_time - start_time} seconds to complete this sorting"
