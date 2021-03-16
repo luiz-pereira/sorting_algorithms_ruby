@@ -96,32 +96,33 @@ unsorted = SortingAlgorithms.make_random_array(size)
 start_time = Time.now
 sorted = SortingAlgorithms.ruby_sort(unsorted.clone)
 end_time = Time.now
-puts "it took ruby_sort #{end_time - start_time} seconds to complete this sorting"
+ruby_time = end_time - start_time
+puts "it took ruby_sort #{ruby_time} seconds to complete this sorting"
 
 start_time = Time.now
 if SortingAlgorithms.selection_sort(unsorted.clone) != sorted
-  raise "bunda!"
+  raise "bollocks!"
 end
 end_time = Time.now
-puts "it took selection_sort #{end_time - start_time} seconds to complete this sorting"
+puts "it took selection_sort #{((end_time - start_time)/ruby_time).to_i}x more time than ruby_sort to complete this sorting"
 
 start_time = Time.now
 if SortingAlgorithms.bubble_sort(unsorted.clone) != sorted
-  raise "bunda!"
+  raise "bollocks!"
 end
 end_time = Time.now
-puts "it took bubble_sort #{end_time - start_time} seconds to complete this sorting"
+puts "it took bubble_sort #{((end_time - start_time)/ruby_time).to_i}x more time than ruby_sort to complete this sorting"
 
 start_time = Time.now
 if SortingAlgorithms.cocktail_sort(unsorted.clone) != sorted
-  raise "bunda!"
+  raise "bollocks!"
 end
 end_time = Time.now
-puts "it took cocktail_sort #{end_time - start_time} seconds to complete this sorting"
+puts "it took cocktail_sort #{((end_time - start_time)/ruby_time).to_i}x more time than ruby_sort to complete this sorting"
 
 start_time = Time.now
 if SortingAlgorithms.merge_sort(unsorted.clone) != sorted
-  raise "bunda!"
+  raise "bollocks!"
 end
 end_time = Time.now
-puts "it took merge_sort #{end_time - start_time} seconds to complete this sorting"
+puts "it took merge_sort #{((end_time - start_time)/ruby_time).to_i}x more time than ruby_sort to complete this sorting"
